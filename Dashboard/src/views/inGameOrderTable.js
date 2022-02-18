@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-let array = []
+let array = [];
 
-
-const inGameOrderTable = ({ inGameOrders, loading, paginate, markComplete, modalOpen, disabled,buttonAllActive }) => {
+const inGameOrderTable = ({ inGameOrders, loading, paginate, markComplete, modalOpen, disabled }) => {
     if (loading) {
         return <h2>Loading...</h2>;
     }
@@ -14,12 +13,11 @@ const inGameOrderTable = ({ inGameOrders, loading, paginate, markComplete, modal
         const foundId = array.indexOf(orderId);
         if (foundId === -1) {
             array.push(orderId);
-            localStorage.setItem("orderArray",array)
+            localStorage.setItem("orderArray", array)
         } else {
             array.splice(foundId, 1);
-            localStorage.setItem("orderArray",array)
+            localStorage.setItem("orderArray", array)
         }
-    
     }
 
 

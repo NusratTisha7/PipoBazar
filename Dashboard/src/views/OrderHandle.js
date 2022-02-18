@@ -25,7 +25,7 @@ let orderId, orderUser, game_name, category_name, game_option, game_price, messa
 let search = false;
 let inGameTable = false, idCodeTable = false, offerTable = false, subscTable = false;
 let totalIngame, totalIngameCancel, totalIdcode, totalIdcodeCancel, totalOffer, totalOfferCancel, totalSubsc, totalSubscCancel, filterFunctionActive = false, srchTerm;
-let buttonAllActive = false;
+let buttonAllActive = false, mark = false;
 
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -158,9 +158,9 @@ const OrderHandle = () => {
         { name: 'Active', value: 'active' },
     ];
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.removeItem('orderArray')
-    },[])
+    }, [])
 
     useEffect(() => {
         adminProfile()
@@ -319,7 +319,7 @@ const OrderHandle = () => {
             })
     }
 
-    const findIdCodeOrder =async () => {
+    const findIdCodeOrder = async () => {
         await getOrdersByAdminId(token, id)
             .then(response => {
                 let data = response.data
@@ -337,7 +337,7 @@ const OrderHandle = () => {
             })
     }
 
-    const findSubscOrder =async () => {
+    const findSubscOrder = async () => {
         await getOrdersByAdminId(token, id)
             .then(response => {
                 let data = response.data
@@ -346,7 +346,7 @@ const OrderHandle = () => {
             })
     }
 
-    const findInGameOrderCancel = async() => {
+    const findInGameOrderCancel = async () => {
         await getOrdersByAdminId(token, id)
             .then(response => {
                 let data = response.data
@@ -355,7 +355,7 @@ const OrderHandle = () => {
             })
     }
 
-    const findIdCodeOrderCancel = async() => {
+    const findIdCodeOrderCancel = async () => {
         await getOrdersByAdminId(token, id)
             .then(response => {
                 let data = response.data
@@ -364,7 +364,7 @@ const OrderHandle = () => {
             })
     }
 
-    const findOfferOrderCancel = async() => {
+    const findOfferOrderCancel = async () => {
         await getOrdersByAdminId(token, id)
             .then(response => {
                 let data = response.data
@@ -373,7 +373,7 @@ const OrderHandle = () => {
             })
     }
 
-    const findSubscOrderCancel =async () => {
+    const findSubscOrderCancel = async () => {
         await getOrdersByAdminId(token, id)
             .then(response => {
                 let data = response.data
@@ -729,12 +729,13 @@ const OrderHandle = () => {
     const markAll = () => {
         const myArray = localStorage.getItem('orderArray').split(",");
         markAllComplete(token, myArray)
-        .then(res=>{
-            localStorage.removeItem('orderArray')
-            notify("Order Confirmed!")
-            window.location.reload();
-        })
+            .then(res => {
+                localStorage.removeItem('orderArray')
+                notify("Order Confirmed!")
+            })
+
     }
+
 
     return (
         <>
